@@ -15,9 +15,7 @@ const addDate = (store) => (next) => (action) => {
   if (action.type === ADD_USER) {
     action.payload.createdAt = new Date().toLocaleString('ru', options);
   }
-
   next(action);
-
 };
 
 export default addDate;

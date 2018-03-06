@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
+import PropTypes from 'prop-types';
 import '../../node_modules/semantic-ui-css/semantic.min.css';
 import '../styles/global.css';
-import {} from "../actions/index";
 import MainMenu from '../components/MainMenu';
 import Books from '../components/Books';
-import {changeSearchValue} from "../actions/index";
+import {changeSearchValue, logOut} from "../actions/index";
 
 const mapStateToProps = state => {
   let searchValue = state.bookReducer.searchValue;
@@ -14,11 +14,12 @@ const mapStateToProps = state => {
   let filteredBooks = [];
   let stateObject = {
     books: [...books],
+    users: state.userReducer.users,
   };
 
   if (searchValue.length > 0) {
     filteredBooks = books.filter((book) => {
-      return (book.title.includes(searchValue) || book.description.includes(searchValue));
+      return (book.name.includes(searchValue));
     });
     stateObject.books = filteredBooks;
   }
@@ -29,16 +30,22 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
     changeSearchValue,
+    logOut,
   }, dispatch)
 });
 
 class Home extends Component {
 
+  //TODO: fix uploading books at the same time with rendering ShortListOfBooks
+
   render() {
-    const {actions: {changeSearchValue}, books} = this.props;
+    const {actions: {changeSearchValue, logOut}, books, users} = this.props;
     return (
       <div className="homePage">
-        <MainMenu/>
+        <MainMenu
+          users={users}
+          logOut={logOut}
+        />
         <form role="search" className="search-form">
           <input
             className="search-text"
@@ -51,15 +58,20 @@ class Home extends Component {
           {books.map((book) => (
             <Books
               book={book}
-
+              key={`${book.isbn}`}
             />
-          ))
-          }
+          ))}
         </div>
       </div>
     );
-  };
+  }
 }
+
+Home.propTypes = {
+  users: PropTypes.object,
+  books: PropTypes.array,
+  actions: PropTypes.object,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Home);
 

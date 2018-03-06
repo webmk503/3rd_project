@@ -1,4 +1,4 @@
-import {CHANGE_SEARCH_VALUE, GET_BOOKS, GET_STORAGE} from "../constants/index";
+import {CHANGE_SEARCH_VALUE, GET_BOOKS_SUCCESS, GET_STORAGE} from "../constants/index";
 
 const initialState = {
   books: {},
@@ -7,14 +7,11 @@ const initialState = {
 
 const bookReducer = (state = initialState, action) => {
   switch (action.type) {
-    case (GET_BOOKS):
+    case (GET_BOOKS_SUCCESS):
       return {
         ...state,
         books: {
-          ...state.books,
-          [action.payload.id]: {
-            ...action.payload,
-          }
+            ...action.payload.data
         },
       };
 

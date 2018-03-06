@@ -1,4 +1,4 @@
-import {ADD_USER, GET_STORAGE, PLUS_COUNT,} from "../constants/index";
+import {ADD_USER, GET_STORAGE, LOG_OUT, PLUS_COUNT,} from "../constants/index";
 
 const initialState = {
   users: {},
@@ -28,12 +28,13 @@ const userReducer = (state = initialState, action) => {
           ...state,
           users: {
             ...state.users,
-            [state.users[id]]: {
-              ...state.users[id],
-              numberOfLogin: state.users[id].numberOfLogin + 1,
+            [action.payload.id]: {
+              ...state.users[action.payload.id],
+              numberOfLogin: action.payload.adder,
             }
           }
         };
+
       default:
         return state;
     }

@@ -6,8 +6,8 @@ import {routerMiddleware} from 'react-router-redux';
 import logger from 'redux-logger'
 
 import rootReducer from '../reducers';
-import {addDate} from '../middlewares/addDate';
-import {updater} from '../middlewares/updateLocalStorage';
+import addDate from '../middlewares/addDate';
+import updater from '../middlewares/updateLocalStorage';
 
 export const history = createHistory();
 

@@ -2,6 +2,16 @@ body{
 
 }
 
+.book{
+  display: inline-block;
+  margin: 10px;
+}
+
+.book:hover {
+  cursor: pointer;
+  border: 1px solid cadetblue;
+}
+
 .logIn {
   width: 300px;
   position: absolute;
