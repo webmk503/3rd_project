@@ -4,7 +4,7 @@ import { connect, Provider } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect, Route, Switch, withRouter } from "react-router-dom";
 import LogInForm from './containers/LogInForm';
-import Home from './containers/BookPage'
+import Home from './containers/BooksPage'
 import { bindActionCreators } from "redux";
 import {
   createLocalStorage, getBooksFromLocalStorage, getLoggedInFromLocalStorage,

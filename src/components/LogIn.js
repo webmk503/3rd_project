@@ -1,12 +1,12 @@
-import React, {Component} from 'react'
+import React, {PureComponent, Component} from 'react';
 import {withRouter} from "react-router-dom";
 import PropTypes from 'prop-types';
 import {Button, Form} from 'semantic-ui-react'
 import '../../node_modules/semantic-ui-css/semantic.min.css';
 import '../styles/global.css';
-import {loggedIn} from "../utils/localStorage";
+import {countOfLogIn, loggedIn} from "../utils/localStorage";
 
-class LogIn extends Component {
+class LogIn extends PureComponent {
 
   state = {
     nickname: '',
@@ -19,7 +19,7 @@ class LogIn extends Component {
   };
 
   handleSubmit = () => {
-    const {users, createUser, getBooks, updateLoginCount, logOut, logIn} = this.props;
+    const {users, createUser, updateLoginCount, logOut} = this.props;
     const allUsers = Object.values(users);
     const existedUser = allUsers.find(elem => elem.nickname === this.state.nickname);
     if (!existedUser) {
@@ -34,13 +34,13 @@ class LogIn extends Component {
         nickname: '',
       });
       loggedIn(newUser.id);
-      logIn(newUser.id);
     } else {
       updateLoginCount(existedUser.id, existedUser.numberOfLogin + 1);
       logOut(existedUser.id);
     }
     loggedIn(existedUser.id);
-    logIn(existedUser.id);
+    countOfLogIn(existedUser.id);
+
     this.props.history.push('/books');
 
   };

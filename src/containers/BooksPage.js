@@ -1,12 +1,13 @@
-import React, {Component} from 'react';
+import React, {PureComponent, Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
+import Loader from 'react-loader-spinner'
 import '../../node_modules/semantic-ui-css/semantic.min.css';
 import '../styles/global.css';
 import MainMenu from '../components/MainMenu';
 import Books from '../components/Books';
-import {changeSearchValue, logOut} from "../actions/index";
+import {changeSearchValue, getAnswerFromAPI, getCharacterFromAPI, logOut} from "../actions/index";
 
 const mapStateToProps = state => {
   let searchValue = state.bookReducer.searchValue;
@@ -14,6 +15,7 @@ const mapStateToProps = state => {
   let filteredBooks = [];
   let stateObject = {
     books: [...books],
+    loading: state.bookReducer.loading,
     users: state.userReducer.users,
   };
 
@@ -23,7 +25,6 @@ const mapStateToProps = state => {
     });
     stateObject.books = filteredBooks;
   }
-
   return stateObject;
 };
 
@@ -31,15 +32,27 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
     changeSearchValue,
     logOut,
+    getAnswerFromAPI,
+    getCharacterFromAPI,
   }, dispatch)
 });
 
-class Home extends Component {
+class Home extends PureComponent {
 
-  //TODO: fix uploading books at the same time with rendering ShortListOfBooks
+  componentWillMount() {
+    const {actions: {getAnswerFromAPI},} = this.props;
+    getAnswerFromAPI();
+  }
 
   render() {
-    const {actions: {changeSearchValue, logOut}, books, users} = this.props;
+    const {actions: {changeSearchValue, logOut,}, books, users, loading} = this.props;
+    if (loading) {
+      return (
+        <div className="loader">
+          <Loader type="Audio" color="#8c0615" height={80} width={80}/>
+        </div>
+      )
+    }
     return (
       <div className="homePage">
         <MainMenu

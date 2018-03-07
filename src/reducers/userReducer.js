@@ -2,7 +2,6 @@ import {ADD_USER, GET_STORAGE, LOG_OUT, PLUS_COUNT,} from "../constants/index";
 
 const initialState = {
   users: {},
-  searchValue: ''
 };
 
 const userReducer = (state = initialState, action) => {

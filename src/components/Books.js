@@ -1,9 +1,9 @@
-import React, {Component} from 'react'
+import React, {PureComponent, Component} from 'react';
 import {Card,} from 'semantic-ui-react'
 import '../styles/global.css';
 import {Link} from "react-router-dom";
 
-class Books extends Component {
+class Books extends PureComponent {
 
   render() {
     const {book} = this.props;

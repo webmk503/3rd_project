@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {PureComponent, Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
@@ -6,32 +6,35 @@ import Book from '../components/DetailedBook';
 import MainMenu from "../components/MainMenu";
 import '../../node_modules/semantic-ui-css/semantic.min.css';
 import '../styles/global.css';
-import {logOut} from "../actions/index";
+import {getCharacterFromAPI, logOut} from "../actions/index";
 
 const mapStateToProps = state => {
   return {
     books: state.bookReducer.books,
     users: state.userReducer.users,
+    characters: state.characterReducer.characters,
+    loading: state.bookReducer.loading,
+
   }
 };
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
-    logOut
+    logOut,
+    getCharacterFromAPI
   }, dispatch)
 });
 
-class BookContainer extends Component {
+class BookContainer extends PureComponent {
 
   render() {
-    const {actions: { logOut }, users, books} = this.props;
+    const {actions: { logOut, getCharacterFromAPI }, users, books, characters, loading} = this.props;
     const isbn = this.props.match.params.isbn;
     const allBooks = Object.values(books);
     const book = allBooks.find(elem => elem.isbn === isbn);
     if (!book) {
       return <div>This page doesn`t exist</div>
     }
-    console.log(users);
     return (
       <div>
         <MainMenu
@@ -39,8 +42,10 @@ class BookContainer extends Component {
           logOut={logOut}/>
         <div>
           <Book
-            key={Math.random()}
             book={book}
+            characters={characters}
+            getCharacterFromAPI={getCharacterFromAPI}
+            loading={loading}
           />
         </div>
       </div>

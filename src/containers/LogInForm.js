@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
+import React, {PureComponent, Component} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
 import '../../node_modules/semantic-ui-css/semantic.min.css';
 import '../styles/global.css';
 import LogIn from "../components/LogIn";
-import {createUser, getBooks, logIn, logOut, updateLoginCount} from "../actions/index";
+import {createUser, logIn, logOut, updateLoginCount} from "../actions/index";
 
 const mapStateToProps = state => {
   return {
@@ -18,7 +18,6 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
       createUser,
-      getBooks,
       updateLoginCount,
       logOut,
       logIn
@@ -26,16 +25,15 @@ const mapDispatchToProps = dispatch => ({
     dispatch)
 });
 
-class App extends Component {
+class App extends PureComponent {
   render() {
-    const {actions: {createUser, getBooks, updateLoginCount, logOut, logIn}, users, books} = this.props;
+    const {actions: {createUser, updateLoginCount, logOut, logIn}, users, books} = this.props;
     return (
       <div className="logIn">
         <LogIn
           users={users}
           books={books}
           createUser={createUser}
-          getBooks={getBooks}
           updateLoginCount={updateLoginCount}
           logOut={logOut}
           logIn={logIn}

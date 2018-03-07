@@ -6,4 +6,6 @@ export const PLUS_COUNT = 'PLUS_COUNT';
 export const LOG_OUT = 'LOG_OUT';
 export const LOG_IN = 'LOG_IN';
 export const GET_BOOKS_REQUEST = 'GET_BOOKS_REQUEST';
+export const GET_CHARACTER_REQUEST = 'GET_CHARACTER_REQUEST';
+export const GET_CHARACTER_SUCCESS = 'GET_CHARACTER_SUCCESS';
 

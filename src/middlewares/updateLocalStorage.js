@@ -6,12 +6,6 @@ const updater = (store) => (next) => (action) => {
 
   if (action.type === ADD_USER) {
     updateUsers(action.payload);
-  } else if (action.type === GET_BOOKS) {
-    updateBooks(action.payload);
-  } else if (action.type === LOG_OUT) {
-    logOut();
-  } else if (action.type === PLUS_COUNT) {
-    countOfLogIn(action.payload);
   }
   next(action);
 

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, {PureComponent, Component} from 'react';
 import { Dropdown, Menu } from 'semantic-ui-react'
 import {Link} from "react-router-dom";
 import { withRouter } from "react-router-dom";
@@ -6,7 +6,7 @@ import { withRouter } from "react-router-dom";
 import '../styles/global.css';
 import {getLoggedInFromLocalStorage, logOut} from "../utils/localStorage";
 
-class MainMenu extends Component {
+class MainMenu extends PureComponent {
   state = {activeItem: 'home'};
 
   handleItemClick = (e, {name}) => this.setState({activeItem: name});
