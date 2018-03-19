@@ -1,12 +1,11 @@
-import React, {PureComponent, } from 'react';
+import React, {Component, } from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
-import Loader from 'react-loader-spinner'
-
+import Loader from '../components/Loader';
 import MainMenu from '../components/MainMenu';
 import Books from '../components/Books';
-import {changeSearchValue,  logOut} from "../actions/index";
+import {changeSearchValue,  } from "../actions/main";
 import {APIgetAllHouses, getAnswerFromAPI, getCharacterFromAPI,} from '../actions/APIRequests'
 import '../../node_modules/semantic-ui-css/semantic.min.css';
 import '../styles/global.css';
@@ -40,7 +39,7 @@ const mapDispatchToProps = dispatch => ({
   }, dispatch)
 });
 
-class Home extends PureComponent {
+class Home extends Component {
 
   componentWillMount() {
     const {actions: {getAnswerFromAPI, APIgetAllHouses},} = this.props;
@@ -49,11 +48,11 @@ class Home extends PureComponent {
   }
 
   render() {
-    const {actions: {changeSearchValue, logOut,}, books, users, loading} = this.props;
+    const {actions: {changeSearchValue, }, books, users, loading} = this.props;
     if (loading) {
       return (
         <div className="loader">
-          <Loader type="Audio" color="#8c0615" height={80} width={80}/>
+          <Loader />
         </div>
       )
     }
@@ -61,7 +60,6 @@ class Home extends PureComponent {
       <div className="homePage">
         <MainMenu
           users={users}
-          logOut={logOut}
         />
         <form role="search" className="search-form">
           <input

@@ -1,4 +1,4 @@
-import {CREATE_AUTHOR, CREATE_COMMENT} from "../constants/index";
+import {CREATE_AUTHOR, CREATE_COMMENT} from "../constants/creatingConstants";
 
 export const createComment = (newComment) => {
   return {

@@ -1,4 +1,5 @@
-import { CREATE_COMMENT, GET_STORAGE,} from "../constants/index";
+import { CREATE_COMMENT, } from "../constants/creatingConstants";
+import { GET_STORAGE, } from '../constants/main';
 
 const initialState = {
   comments: {},

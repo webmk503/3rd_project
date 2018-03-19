@@ -1,7 +1,7 @@
 import React, {PureComponent, } from 'react';
 import {Card,} from 'semantic-ui-react'
 import '../styles/global.css';
-import Loader from 'react-loader-spinner'
+import LoaderView from '../components/Loader';
 import PropTypes from 'prop-types';
 
 class House extends PureComponent {
@@ -13,7 +13,7 @@ class House extends PureComponent {
     if (loading) {
       return (
         <div className="loader">
-          <Loader type="Audio" color="#8c0615" height={80} width={80}/>
+          <LoaderView />
         </div>
       )
     }

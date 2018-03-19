@@ -20,8 +20,7 @@ class MainMenu extends PureComponent {
     const {activeItem,} = this.state;
     const {users} = this.props;
     const loggedIn = getLoggedInFromLocalStorage();
-    const allUsers = Object.values(users);
-    const loggedUser = allUsers.find(elem => elem.id === loggedIn.id);
+    const loggedUser = users[loggedIn.id];
     // if(!loggedUser){
     //   this.props.history.push('/login');
     // }

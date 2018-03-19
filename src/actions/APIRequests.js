@@ -5,7 +5,7 @@ import {
   GET_BOOKS_REQUEST, GET_BOOKS_SUCCESS, GET_CHAR_REQUEST, GET_CHAR_SUCCESS, GET_CHARACTER_REQUEST,
   GET_CHARACTER_SUCCESS,
   GET_HOUSE_REQUEST, GET_HOUSE_SUCCESS, GET_HOUSES_REQUEST, GET_HOUSES_SUCCESS
-} from "../constants/index";
+} from "../constants/apiConstants";
 
 export const getAnswerFromAPI = () => dispatch => {
   dispatch({

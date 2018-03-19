@@ -1,23 +1,21 @@
-import React, {PureComponent, } from 'react';
+import React, {PureComponent,} from 'react';
 import {Card} from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import {Link} from "react-router-dom";
 import PropTypes from 'prop-types';
 import {getURLbooks, getURLchars} from "../utils/getURL";
-
 
 class Character extends PureComponent {
 
   render() {
     const {book, characters} = this.props;
     const charsOfBook = {...characters[getURLbooks(book.url)]};
-    if(`../img/characters/${character.data.name} tv.jpg`){
-      console.log('tur')
-    }
     return (
       <div className="characters">
-        {Object.values(charsOfBook).map((character) => (
+        {Object.values(charsOfBook).map((character) => {
+          return (
             <Link to={`/char/${getURLchars(character.data.url)}`}>
               <div className="character">
+
                 <Card
                   className='char-card'
                   image={`../img/characters/${character.data.name} tv.jpg` || '../img/characters/noname.png'}
@@ -29,6 +27,7 @@ class Character extends PureComponent {
               </div>
             </Link>
           )
+          }
         )}
       </div>
     );

@@ -1,4 +1,4 @@
-import { GET_CHAR_REQUEST, GET_CHAR_SUCCESS, GET_CHARACTER_SUCCESS,} from "../constants/index";
+import { GET_CHAR_REQUEST, GET_CHAR_SUCCESS, GET_CHARACTER_SUCCESS,} from "../constants/apiConstants";
 
 const initialState = {
   characters: {},

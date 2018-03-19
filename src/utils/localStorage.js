@@ -41,7 +41,7 @@ export function logOut() {
   localStorage.setItem('loggedIn', JSON.stringify({}));
 }
 
-export function countOfLogIn(user) {
+export function updateCountOfLogIn(user) {
   const oldUsers = JSON.parse(localStorage.getItem('users'));
   const newUsers = {
     ...oldUsers,

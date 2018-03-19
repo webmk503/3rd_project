@@ -1,4 +1,4 @@
-import {GET_HOUSE_REQUEST, GET_HOUSE_SUCCESS, GET_HOUSES_REQUEST, GET_HOUSES_SUCCESS} from "../constants/index";
+import {GET_HOUSE_REQUEST, GET_HOUSE_SUCCESS, GET_HOUSES_REQUEST, GET_HOUSES_SUCCESS} from "../constants/apiConstants";
 
 const initialState = {
   houses: {},

@@ -1,15 +1,14 @@
-import React, {PureComponent, } from 'react';
+import React, {Component, } from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
 import MainMenu from "../components/MainMenu";
 import '../../node_modules/semantic-ui-css/semantic.min.css';
 import '../styles/global.css';
-import {logOut} from "../actions/index";
 import {APIgetChar, getHouseFromAPI,} from '../actions/APIRequests';
 import {getURLbooks, getURLchars} from "../utils/getURL";
 import Char from "../components/Char";
-import Loader from "react-loader-spinner";
+import LoaderView from "../components/Loader";
 
 const mapStateToProps = state => {
   return {
@@ -24,13 +23,12 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
-    logOut,
     APIgetChar,
     getHouseFromAPI,
   }, dispatch)
 });
 
-class CharContainer extends PureComponent {
+class CharContainer extends Component {
 
   componentWillMount(){
     const {actions: { APIgetChar, }, } = this.props;
@@ -40,15 +38,13 @@ class CharContainer extends PureComponent {
   }
 
   render() {
-    const {actions: {logOut, getHouseFromAPI, apiGetQuotes }, users, characters, loading, houses, } = this.props;
+    const {actions: { getHouseFromAPI, apiGetQuotes }, users, characters, loading, houses, } = this.props;
     const charId = this.props.match.params.id;
     const lastActiveBook = JSON.parse(localStorage.getItem('lastActiveBook'));
-    console.log('isEmpty:', Object.values(characters).length);
     if(Object.values(characters).length === 0){
-
         return (
           <div className="loader">
-            <Loader type="Audio" color="#8c0615" height={80} width={80}/>
+            <LoaderView/>
           </div>
         )
     }
@@ -59,7 +55,7 @@ class CharContainer extends PureComponent {
       <div>
         <MainMenu
           users={users}
-          logOut={logOut}/>
+        />
         <div>
           <Char
             character={char}

@@ -1,6 +1,6 @@
 import {
   ADD_USER, CHANGE_SEARCH_VALUE, GET_STORAGE, PLUS_COUNT, LOG_IN,
-} from '../constants/index';
+} from '../constants/main';
 
 export const createUser = (newUser) => {
   return {

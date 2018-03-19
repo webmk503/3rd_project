@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {Button, Form} from 'semantic-ui-react'
 import '../../node_modules/semantic-ui-css/semantic.min.css';
 import '../styles/global.css';
-import {countOfLogIn, loggedIn} from "../utils/localStorage";
+import {updateCountOfLogIn, loggedIn} from "../utils/localStorage";
 
 class LogIn extends PureComponent {
 
@@ -21,10 +21,8 @@ class LogIn extends PureComponent {
   handleSubmit = () => {
     const {users, createUser, updateLoginCount, } = this.props;
     const allUsers = Object.values(users);
-    console.log(allUsers);
     const existedUser = allUsers.find(elem => elem.nickname === this.state.nickname);
-    console.log(this.state.nickname);
-    console.log(existedUser);
+    console.log('user',existedUser);
     if (!existedUser) {
       const newUser = {
         id: Math.random(),
@@ -39,9 +37,10 @@ class LogIn extends PureComponent {
       loggedIn(newUser.id);
     } else {
       updateLoginCount(existedUser.id, existedUser.numberOfLogin + 1);
+      loggedIn(existedUser.id);
+      updateCountOfLogIn(existedUser.id);
     }
-    loggedIn(existedUser.id);
-    countOfLogIn(existedUser.id);
+
 
     this.props.history.push('/books');
 

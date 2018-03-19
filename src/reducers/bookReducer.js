@@ -1,9 +1,9 @@
 import {
-  CHANGE_SEARCH_VALUE, CREATE_COMMENT, GET_BOOK_REQUEST, GET_BOOK_SUCCESS, GET_BOOKS_REQUEST, GET_BOOKS_SUCCESS,
+  GET_BOOK_REQUEST, GET_BOOK_SUCCESS, GET_BOOKS_REQUEST, GET_BOOKS_SUCCESS,
   GET_CHARACTER_REQUEST,
   GET_CHARACTER_SUCCESS,
-  GET_STORAGE
-} from "../constants/index";
+} from "../constants/apiConstants";
+import { CHANGE_SEARCH_VALUE, GET_STORAGE, } from '../constants/main';
 
 const initialState = {
   books: {},

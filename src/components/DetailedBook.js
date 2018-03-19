@@ -1,6 +1,6 @@
 import React, {PureComponent,} from 'react';
 import {Container, Form, Header} from "semantic-ui-react";
-import Loader from 'react-loader-spinner'
+import LoaderView from '../components/Loader';
 import PropTypes from 'prop-types';
 import Character from "./Character";
 import {getURLbooks} from "../utils/getURL";
@@ -26,7 +26,7 @@ class DetailedBook extends PureComponent {
     if (loading) {
       return (
         <div className="loader">
-          <Loader type="Audio" color="#8c0615" height={80} width={80}/>
+          <LoaderView />
         </div>
       )
     }
@@ -36,7 +36,6 @@ class DetailedBook extends PureComponent {
         commentsOfThisBook.push(comment);
       }
     });
-    console.log(commentsOfThisBook);
     return (
       <Form>
         <div className="book-info">

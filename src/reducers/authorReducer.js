@@ -1,4 +1,6 @@
-import {CREATE_AUTHOR, GET_STORAGE, } from "../constants/index";
+import { CREATE_AUTHOR, } from "../constants/creatingConstants";
+import { GET_STORAGE, } from '../constants/main';
+
 
 const initialState = {
   authors: {}

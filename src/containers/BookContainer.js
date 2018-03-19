@@ -1,4 +1,4 @@
-import React, {PureComponent, } from 'react';
+import React, {Component, } from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
@@ -6,7 +6,6 @@ import DetailedBook from '../components/DetailedBook';
 import MainMenu from "../components/MainMenu";
 import '../../node_modules/semantic-ui-css/semantic.min.css';
 import '../styles/global.css';
-import { logOut } from "../actions/index";
 import {APIgetBook, getAnswerFromAPI, getCharacterFromAPI,} from '../actions/APIRequests';
 import {getURLbooks} from "../utils/getURL";
 import {createAuthor, createComment} from "../actions/creatingActions";
@@ -27,7 +26,6 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
-    logOut,
     getCharacterFromAPI,
     APIgetBook,
     getAnswerFromAPI,
@@ -36,7 +34,7 @@ const mapDispatchToProps = dispatch => ({
   }, dispatch)
 });
 
-class BookContainer extends PureComponent {
+class BookContainer extends Component {
 
   componentDidMount() {
     const {actions: { APIgetBook, }, } = this.props;
@@ -46,12 +44,11 @@ class BookContainer extends PureComponent {
 
   render() {
 
-    const { actions: { logOut, getCharacterFromAPI, APIgetBook, createComment, createAuthor },
+    const { actions: { getCharacterFromAPI, APIgetBook, createComment, createAuthor },
             users, books, houses, characters, loading, comments, authors} = this.props;
 
     const loggedIn = getLoggedInFromLocalStorage();
-    const allUsers = Object.values(users);
-    const loggedUser = allUsers.find(elem => elem.id === loggedIn.id);
+    const loggedUser = users[loggedIn.id];
 
     const id = this.props.match.params.id;
     const allBooks = Object.values(books);
@@ -65,7 +62,7 @@ class BookContainer extends PureComponent {
       <div>
         <MainMenu
           users={users}
-          logOut={logOut}/>
+        />
         <div>
           <DetailedBook
             createAuthor={createAuthor}

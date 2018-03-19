@@ -11,7 +11,7 @@ import {
   getLoggedInFromLocalStorage,
   getUsersFromLocalStorage
 } from "./utils/localStorage";
-import { getLocalStorage } from "./actions/index";
+import { getLocalStorage } from "./actions/main";
 import BookContainer from "./containers/BookContainer";
 import CharContainer from "./containers/CharContainer";
 import HouseContainer from "./containers/HouseContainer";
@@ -43,7 +43,6 @@ class Root extends Component {
 
   componentWillMount() {
     const {users, books, comments, authors} = this.props;
-    console.log('a', authors)
     if (users === null) {
       this.props.actions.createLocalStorage();
     }
@@ -79,6 +78,8 @@ Root.propTypes = {
   users: PropTypes.object,
   books: PropTypes.object,
   loggedIn: PropTypes.object,
+  authors: PropTypes.object,
+  comments: PropTypes.object,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Root);

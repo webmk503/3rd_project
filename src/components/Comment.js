@@ -25,26 +25,31 @@ class Comment extends Component {
     });
   };
 
-  handleCreatingCommentAndAuthor = () => {
-    const {authors, options, book, createComment, createAuthor, id} = this.props;
-    const author = Object.values(authors).find(() => (name !== this.state.commentsAuthor));
-    if (this.state.commentsAuthor.length > 0 &&
-      author.name !== this.state.commentsAuthor) {
-      const newAuthor = {
-        id: Math.random(),
-        name: this.state.commentsAuthor,
-      };
-      const newComment = {
-        id: Math.random(),
-        comment: this.state.comment,
-        bookId: id,
-        authorId: newAuthor.id
-      };
+  creating = () => {
+    const { createComment, createAuthor, id} = this.props;
+    const newAuthor = {
+      id: Math.random(),
+      name: this.state.commentsAuthor,
+    };
+    const newComment = {
+      id: Math.random(),
+      comment: this.state.comment,
+      bookId: id,
+      authorId: newAuthor.id
+    };
 
-      createAuthor(newAuthor);
-      createComment(newComment);
-      updateComments(newComment);
-      updateAuthor(newAuthor);
+    createAuthor(newAuthor);
+    createComment(newComment);
+    updateComments(newComment);
+    updateAuthor(newAuthor);
+  };
+
+  handleCreatingCommentAndAuthor = () => {
+    const {authors, createComment, id} = this.props;
+    const author = Object.values(authors).find((author) => (author.name === this.state.commentsAuthor));
+    console.log(author);
+    if (this.state.comment.length > 0 && !author) {
+      this.creating();
     } else {
       const newComment = {
         id: Math.random(),

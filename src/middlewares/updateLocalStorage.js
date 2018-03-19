@@ -1,4 +1,4 @@
-import {ADD_USER, } from "../constants/index";
+import {ADD_USER, } from "../constants/main";
 import {updateUsers} from "../utils/localStorage";
 
 

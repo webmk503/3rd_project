@@ -1,5 +1,5 @@
-import React, {PureComponent, } from 'react';
-import { Container, Header} from "semantic-ui-react";
+import React, {PureComponent,} from 'react';
+import {Container, Header} from "semantic-ui-react";
 import Loader from 'react-loader-spinner';
 import PropTypes from 'prop-types';
 import '../styles/global.css';
@@ -8,12 +8,12 @@ import '../styles/global.css';
 class Char extends PureComponent {
 
   componentWillMount() {
-    const {getHouseFromAPI, character, } = this.props;
+    const {getHouseFromAPI, character} = this.props;
     getHouseFromAPI(character.data.allegiances[0]);
   }
 
   render() {
-    const {character, houses, loading} = this.props;
+    const {character, houses} = this.props;
 
     return (
       <div>

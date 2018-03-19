@@ -1,12 +1,11 @@
-import React, {PureComponent, } from 'react';
+import React, {Component, } from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
-import Loader from 'react-loader-spinner'
+import LoaderView from '../components/Loader';
 import '../../node_modules/semantic-ui-css/semantic.min.css';
 import '../styles/global.css';
 import MainMenu from '../components/MainMenu';
-import { logOut } from "../actions/index";
 import {APIgetAllHouses} from "../actions/APIRequests";
 import House from "../components/Houses";
 
@@ -22,12 +21,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
-    logOut,
     APIgetAllHouses,
   }, dispatch)
 });
 
-class HousesContainer extends PureComponent {
+class HousesContainer extends Component {
 
   componentDidMount() {
     const {actions: { APIgetAllHouses, }, } = this.props;
@@ -35,11 +33,11 @@ class HousesContainer extends PureComponent {
   }
 
   render() {
-    const {actions: { logOut, APIgetAllHouses}, houses, users, loading} = this.props;
+    const {actions: { APIgetAllHouses}, houses, users, loading} = this.props;
     if (loading) {
       return (
         <div className="loader">
-          <Loader type="Audio" color="#8c0615" height={80} width={80}/>
+          <LoaderView />
         </div>
       )
     }
@@ -47,7 +45,6 @@ class HousesContainer extends PureComponent {
       <div className="housePage">
         <MainMenu
           users={users}
-          logOut={logOut}
         />
 
         <div>
