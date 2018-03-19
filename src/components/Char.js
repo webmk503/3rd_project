@@ -1,6 +1,5 @@
 import React, {PureComponent,} from 'react';
-import {Container, Header} from "semantic-ui-react";
-import Loader from 'react-loader-spinner';
+import { Header} from "semantic-ui-react";
 import PropTypes from 'prop-types';
 import '../styles/global.css';
 

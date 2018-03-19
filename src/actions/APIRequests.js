@@ -22,7 +22,7 @@ export const getAnswerFromAPI = () => dispatch => {
       }, 500);
     })
     .catch(function (error) {
-      console.log(error);
+      throw new Error(error);
     });
 };
 
@@ -44,7 +44,7 @@ export const APIgetBook = (bookId, id) => dispatch => {
       }, 500);
     })
     .catch(function (error) {
-      console.log(error);
+      throw new Error(error);
     });
 };
 export const APIgetChar = (charId, id) => dispatch => {
@@ -66,7 +66,7 @@ export const APIgetChar = (charId, id) => dispatch => {
       }, 200);
     })
     .catch(function (error) {
-      console.log(error);
+      throw new Error(error);
     });
 };
 
@@ -88,7 +88,7 @@ export const getCharacterFromAPI = (link, bookID) => dispatch => {
       }, 500);
     })
     .catch(function (error) {
-      console.log(error);
+      throw new Error(error);
     });
 };
 
@@ -109,7 +109,7 @@ export const getHouseFromAPI = (link, id) => dispatch => {
       }, 500);
     })
     .catch(function (error) {
-      console.log(error);
+      throw new Error(error);
     });
 };
 export const APIgetAllHouses = () => dispatch => {
@@ -128,6 +128,6 @@ export const APIgetAllHouses = () => dispatch => {
       }, 500);
     })
     .catch(function (error) {
-      console.log(error);
+      throw new Error(error);
     });
 };

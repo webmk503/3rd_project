@@ -20,7 +20,6 @@ export function updateUsers(user) {
 
 export function updateComments(comment) {
   const oldComments = JSON.parse(localStorage.getItem('comments'));
-  const books = JSON.parse(localStorage.getItem('books'));
   const newComments = {
     ...oldComments,
     [comment.id]: {

@@ -22,7 +22,6 @@ class LogIn extends PureComponent {
     const {users, createUser, updateLoginCount, } = this.props;
     const allUsers = Object.values(users);
     const existedUser = allUsers.find(elem => elem.nickname === this.state.nickname);
-    console.log('user',existedUser);
     if (!existedUser) {
       const newUser = {
         id: Math.random(),

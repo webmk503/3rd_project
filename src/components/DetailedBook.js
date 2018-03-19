@@ -92,6 +92,12 @@ DetailedBook.propTypes = {
   houses: PropTypes.object,
   getCharacterFromAPI: PropTypes.func,
   loading: PropTypes.bool,
+  author: PropTypes.object,
+  id: PropTypes.string,
+  createComment: PropTypes.func,
+  createAuthor: PropTypes.func,
+  loggedUser: PropTypes.object,
+  authors: PropTypes.object,
 };
 
 export default DetailedBook;

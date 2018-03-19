@@ -96,6 +96,7 @@ BookContainer.propTypes = {
   houses: PropTypes.object,
   characters: PropTypes.object,
   loading: PropTypes.bool,
+  authors: PropTypes.object,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(BookContainer);

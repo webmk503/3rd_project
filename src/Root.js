@@ -11,7 +11,7 @@ import {
   getLoggedInFromLocalStorage,
   getUsersFromLocalStorage
 } from "./utils/localStorage";
-import { getLocalStorage } from "./actions/main";
+import {getLocalStorage } from "./actions/main";
 import BookContainer from "./containers/BookContainer";
 import CharContainer from "./containers/CharContainer";
 import HouseContainer from "./containers/HouseContainer";

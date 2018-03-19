@@ -13,9 +13,8 @@ class Character extends PureComponent {
       <div className="characters">
         {Object.values(charsOfBook).map((character) => {
           return (
-            <Link to={`/char/${getURLchars(character.data.url)}`}>
+            <Link to={`/char/${getURLchars(character.data.url)}`} key={getURLchars(character.data.url)}>
               <div className="character">
-
                 <Card
                   className='char-card'
                   image={`../img/characters/${character.data.name} tv.jpg` || '../img/characters/noname.png'}

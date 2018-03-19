@@ -47,7 +47,6 @@ class Comment extends Component {
   handleCreatingCommentAndAuthor = () => {
     const {authors, createComment, id} = this.props;
     const author = Object.values(authors).find((author) => (author.name === this.state.commentsAuthor));
-    console.log(author);
     if (this.state.comment.length > 0 && !author) {
       this.creating();
     } else {
@@ -88,6 +87,10 @@ class Comment extends Component {
 
 Comment.propTypes = {
   createComment: PropTypes.func,
+  loggedUser: PropTypes.object,
+  createAuthor: PropTypes.func,
+  id: PropTypes.string,
+  authors: PropTypes.object,
 };
 
 export default DateOptions(Comment);

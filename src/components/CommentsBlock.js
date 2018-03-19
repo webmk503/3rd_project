@@ -26,6 +26,7 @@ class CommentsBlock extends Component {
 
 CommentsBlock.propTypes = {
   comment: PropTypes.object,
+  authors: PropTypes.object,
 };
 
 export default CommentsBlock;
