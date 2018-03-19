@@ -2,6 +2,9 @@ export function createLocalStorage() {
   localStorage.setItem('users', JSON.stringify({}));
   localStorage.setItem('books', JSON.stringify({}));
   localStorage.setItem('loggedIn',JSON.stringify({}));
+  localStorage.setItem('comments',JSON.stringify({}));
+  localStorage.setItem('authors', JSON.stringify({}));
+
 }
 
 export function updateUsers(user) {
@@ -15,19 +18,19 @@ export function updateUsers(user) {
   localStorage.setItem('users', JSON.stringify(newUsers));
 }
 
-export function updateBooks(book) {
-  const oldBooks = JSON.parse(localStorage.getItem('books'));
-  const newBooks = {
-    ...oldBooks,
-    [book.id]: {
-      ...book
+export function updateComments(comment) {
+  const oldComments = JSON.parse(localStorage.getItem('comments'));
+  const books = JSON.parse(localStorage.getItem('books'));
+  const newComments = {
+    ...oldComments,
+    [comment.id]: {
+      ...comment
     }
   };
-  localStorage.setItem('users', JSON.stringify(newBooks));
+  localStorage.setItem('comments', JSON.stringify(newComments));
 }
 
 export function loggedIn(id) {
-  const loggedIn = JSON.parse(localStorage.getItem('loggedIn'));
   const changed = {
     id
   };
@@ -49,7 +52,16 @@ export function countOfLogIn(user) {
   };
   localStorage.setItem('users', JSON.stringify(newUsers));
 }
-
+export function updateAuthor(author) {
+  const oldAuthors = JSON.parse(localStorage.getItem('authors'));
+  const newAuthors = {
+    ...oldAuthors,
+    [author.id]: {
+      ...author
+    }
+  };
+  localStorage.setItem('authors', JSON.stringify(newAuthors));
+}
 export function getUsersFromLocalStorage() {
   return JSON.parse(localStorage.getItem('users'));
 }
@@ -57,10 +69,15 @@ export function getUsersFromLocalStorage() {
 export function getBooksFromLocalStorage() {
   return JSON.parse(localStorage.getItem('books'));
 }
+export function getCommentsFromLocalStorage() {
+  return JSON.parse(localStorage.getItem('comments'));
+}
 
 export function getLoggedInFromLocalStorage() {
   return JSON.parse(localStorage.getItem('loggedIn'));
 }
-
+export function getAuthorsFromLocaleStorage() {
+  return JSON.parse(localStorage.getItem('authors'));
+}
 
 

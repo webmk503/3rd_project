@@ -1,4 +1,4 @@
-import {ADD_USER, GET_STORAGE, LOG_OUT, PLUS_COUNT,} from "../constants/index";
+import {ADD_USER, GET_STORAGE, PLUS_COUNT,} from "../constants/index";
 
 const initialState = {
   users: {},

@@ -1,7 +1,7 @@
-import React, {PureComponent, Component} from 'react';
-import { Dropdown, Menu } from 'semantic-ui-react'
-import {Link} from "react-router-dom";
-import { withRouter } from "react-router-dom";
+import React, {PureComponent, } from 'react';
+import {Dropdown, Menu} from 'semantic-ui-react'
+import {Link, withRouter} from "react-router-dom";
+import PropTypes from 'prop-types';
 
 import '../styles/global.css';
 import {getLoggedInFromLocalStorage, logOut} from "../utils/localStorage";
@@ -17,8 +17,8 @@ class MainMenu extends PureComponent {
   };
 
   render() {
-    const { activeItem, } = this.state;
-    const { users } = this.props;
+    const {activeItem,} = this.state;
+    const {users} = this.props;
     const loggedIn = getLoggedInFromLocalStorage();
     const allUsers = Object.values(users);
     const loggedUser = allUsers.find(elem => elem.id === loggedIn.id);
@@ -28,7 +28,10 @@ class MainMenu extends PureComponent {
     return (
       <Menu size='huge'>
         <Link to="/books">
-          <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick}/>
+          <Menu.Item name='books' active={activeItem === 'books'} onClick={this.handleItemClick}/>
+        </Link>
+        <Link to="/houses">
+          <Menu.Item name='houses' active={activeItem === 'houses'} onClick={this.handleItemClick}/>
         </Link>
         <Menu.Menu position='right'>
           <Dropdown item text={loggedUser.nickname}>
@@ -41,5 +44,10 @@ class MainMenu extends PureComponent {
     )
   }
 }
+
+MainMenu.propTypes = {
+  history: PropTypes.object,
+  users: PropTypes.object,
+};
 
 export default withRouter(MainMenu);

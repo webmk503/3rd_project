@@ -1,5 +1,5 @@
-import {countOfLogIn, logOut, updateBooks, updateUsers} from "../utils/localStorage";
-import {ADD_USER, GET_BOOKS, LOG_OUT, PLUS_COUNT} from "../constants/index";
+import {ADD_USER, } from "../constants/index";
+import {updateUsers} from "../utils/localStorage";
 
 
 const updater = (store) => (next) => (action) => {

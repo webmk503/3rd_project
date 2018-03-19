@@ -1,5 +1,7 @@
 import {
-  CHANGE_SEARCH_VALUE, GET_BOOKS_REQUEST, GET_BOOKS_SUCCESS, GET_CHARACTER_REQUEST, GET_CHARACTER_SUCCESS,
+  CHANGE_SEARCH_VALUE, CREATE_COMMENT, GET_BOOK_REQUEST, GET_BOOK_SUCCESS, GET_BOOKS_REQUEST, GET_BOOKS_SUCCESS,
+  GET_CHARACTER_REQUEST,
+  GET_CHARACTER_SUCCESS,
   GET_STORAGE
 } from "../constants/index";
 
@@ -11,12 +13,13 @@ const initialState = {
 
 const bookReducer = (state = initialState, action) => {
   switch (action.type) {
+
     case (GET_BOOKS_SUCCESS):
       return {
         ...state,
         loading: false,
         books: {
-            ...action.payload.data
+          ...action.payload.data
         },
       };
 
@@ -27,7 +30,23 @@ const bookReducer = (state = initialState, action) => {
         books: {},
       };
 
-    case (GET_CHARACTER_SUCCESS):
+    case (GET_BOOK_SUCCESS):
+      return {
+        ...state,
+        loading: false,
+        books: {
+          [action.payload.id]: {
+            comments: [],
+            ...action.payload.response.data,
+          },
+        },
+      };
+    case (GET_BOOK_REQUEST):
+      return {
+        ...state,
+        loading: true,
+      };
+    case  (GET_CHARACTER_SUCCESS):
       return {
         ...state,
         loading: false,

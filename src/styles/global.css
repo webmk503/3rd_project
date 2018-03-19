@@ -2,19 +2,69 @@ body{
 
 }
 
+img {
+  max-width: 600px;
+  max-height: 600px;
+}
 .book{
   display: inline-block;
   margin: 10px;
 }
 
-.characters {
+.book-info{
+  display: flex;
+  margin-left: 30px;
+}
+
+.char-info {
+  margin-left: 40px;
+}
+.book-info > div > img {
+  width: 261px;
+  height: 400px;
+}
+div.container{
+  margin-top: 30px;
+  margin-left: 20px;
+}
+
+.book-card img {
+  width: 261px;
+  height: 400px;
+  margin-left: 15px;
+}
+.char-card {
+  width: 300px !important;
+}
+.char-card img {
+  width: 265px;
+  height: 400px;
+  margin-left: 18px;
+}
+.character {
   display: inline-block;
   margin: 10px;
 }
 
-.book:hover {
-  cursor: pointer;
-  border: 1px solid cadetblue;
+.house-card img {
+  width: 250px;
+  height: 321px;
+  margin-left: 15px;
+}
+
+.char-img-wrapper{
+  display: flex;
+  margin-top: 20px;
+}
+
+.char-img {
+  margin-left: 20px;
+}
+.char-img img {
+  width: 261px;
+  height: 400px;
+  max-width: 400px;
+  max-height: 400px;
 }
 
 .logIn {

@@ -1,21 +1,33 @@
-import React, {PureComponent, Component} from 'react';
+import React, {PureComponent, } from 'react';
 import {Card} from "semantic-ui-react";
+import { Link } from "react-router-dom";
+import PropTypes from 'prop-types';
+import {getURLbooks, getURLchars} from "../utils/getURL";
 
-class Book extends PureComponent {
+
+class Character extends PureComponent {
 
   render() {
     const {book, characters} = this.props;
-    const charsOfBook = {...characters[book.isbn]};
+    const charsOfBook = {...characters[getURLbooks(book.url)]};
+    if(`../img/characters/${character.data.name} tv.jpg`){
+      console.log('tur')
+    }
     return (
       <div className="characters">
         {Object.values(charsOfBook).map((character) => (
-            <Card
-              image=''
-              header={character.data.name}
-              meta={`Played by: ${character.data.playedBy}`}
-              description={`TV series: ${character.data.tvSeries.length}`}
-              extra={`Born: ${character.data.born}`}
-            />
+            <Link to={`/char/${getURLchars(character.data.url)}`}>
+              <div className="character">
+                <Card
+                  className='char-card'
+                  image={`../img/characters/${character.data.name} tv.jpg` || '../img/characters/noname.png'}
+                  header={character.data.name}
+                  meta={`Played by: ${character.data.playedBy}`}
+                  description={`Born: ${character.data.born}`}
+                  extra={``}
+                />
+              </div>
+            </Link>
           )
         )}
       </div>
@@ -23,4 +35,10 @@ class Book extends PureComponent {
   }
 }
 
-export default Book;
+Character.propTypes = {
+  book: PropTypes.object,
+  characters: PropTypes.object,
+  loading: PropTypes.bool,
+};
+
+export default Character;

@@ -1,4 +1,4 @@
-import React, {PureComponent, Component} from 'react';
+import React, {PureComponent, } from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
@@ -19,15 +19,14 @@ const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
       createUser,
       updateLoginCount,
-      logOut,
-      logIn
+      logIn,
     },
     dispatch)
 });
 
 class App extends PureComponent {
   render() {
-    const {actions: {createUser, updateLoginCount, logOut, logIn}, users, books} = this.props;
+    const {actions: {createUser, updateLoginCount, logIn}, users, books} = this.props;
     return (
       <div className="logIn">
         <LogIn
@@ -35,7 +34,6 @@ class App extends PureComponent {
           books={books}
           createUser={createUser}
           updateLoginCount={updateLoginCount}
-          logOut={logOut}
           logIn={logIn}
         />
       </div>
@@ -49,7 +47,6 @@ App.propTypes = {
   createUser: PropTypes.func,
   getBooks: PropTypes.func,
   updateLoginCount: PropTypes.func,
-  logOut: PropTypes.func,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -1,4 +1,4 @@
-import React, {PureComponent, Component} from 'react';
+import React, {PureComponent, } from 'react';
 import {withRouter} from "react-router-dom";
 import PropTypes from 'prop-types';
 import {Button, Form} from 'semantic-ui-react'
@@ -19,9 +19,12 @@ class LogIn extends PureComponent {
   };
 
   handleSubmit = () => {
-    const {users, createUser, updateLoginCount, logOut} = this.props;
+    const {users, createUser, updateLoginCount, } = this.props;
     const allUsers = Object.values(users);
+    console.log(allUsers);
     const existedUser = allUsers.find(elem => elem.nickname === this.state.nickname);
+    console.log(this.state.nickname);
+    console.log(existedUser);
     if (!existedUser) {
       const newUser = {
         id: Math.random(),
@@ -36,7 +39,6 @@ class LogIn extends PureComponent {
       loggedIn(newUser.id);
     } else {
       updateLoginCount(existedUser.id, existedUser.numberOfLogin + 1);
-      logOut(existedUser.id);
     }
     loggedIn(existedUser.id);
     countOfLogIn(existedUser.id);
@@ -71,6 +73,7 @@ LogIn.propTypes = {
   getBooks: PropTypes.func,
   updateLoginCount: PropTypes.func,
   history: PropTypes.object,
+  logOut: PropTypes.func,
 };
 
 export default withRouter(LogIn);

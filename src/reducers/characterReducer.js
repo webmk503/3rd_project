@@ -1,8 +1,8 @@
-import {CHANGE_SEARCH_VALUE, GET_CHARACTER_SUCCESS,} from "../constants/index";
+import { GET_CHAR_REQUEST, GET_CHAR_SUCCESS, GET_CHARACTER_SUCCESS,} from "../constants/index";
 
 const initialState = {
   characters: {},
-  searchValue: '',
+  loading: false
 };
 
 const userReducer = (state = initialState, action) => {
@@ -12,19 +12,33 @@ const userReducer = (state = initialState, action) => {
           ...state,
           characters: {
             ...state.characters,
-            [action.payload.bookISBN]: {
-              ...state.characters[action.payload.bookISBN],
+            [action.payload.bookID]: {
+              ...state.characters[action.payload.bookID],
               [action.payload.response.data.name]: {
                 ...action.payload.response,
               }
             },
           }
         };
-      case (CHANGE_SEARCH_VALUE):
+      case (GET_CHAR_SUCCESS):
         return {
           ...state,
-          searchValue: action.payload
+          loading: false,
+          characters: {
+            [action.payload.id]:{
+              ...state.characters[action.payload.id],
+              [action.payload.response.data.name]:{
+                ...action.payload.response,
+              }
+            },
+          },
         };
+      case (GET_CHAR_REQUEST):
+        return {
+          ...state,
+          loading: true,
+        };
+
 
       default:
         return state;
