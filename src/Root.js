@@ -15,6 +15,7 @@ import {getLocalStorage } from "./actions/main";
 import BookContainer from "./containers/BookContainer";
 import CharContainer from "./containers/CharContainer";
 import HouseContainer from "./containers/HouseContainer";
+import RegFormContainer from './containers/RegFormContainer';
 
 const mapStateToProps = () => {
   const users = getUsersFromLocalStorage();
@@ -60,6 +61,7 @@ class Root extends Component {
             <Route path="/char/:id" component={CharContainer}/>
             <Route path="/books/" component={Home}/>
             <Route path="/houses/" component={HouseContainer}/>
+            <Route path="/sign_in/" component={RegFormContainer}/>
             <Redirect from="/" to="/login"/>
 
           </Switch>
