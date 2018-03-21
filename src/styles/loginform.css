@@ -1,0 +1,57 @@
+.log-form {
+  width: 300px;
+  position: absolute;
+  left: 40%;
+  top: 30%;
+  padding: 30px;
+  border: 1px solid cadetblue;
+}
+
+.log-form p {
+  color: red;
+}
+
+.log-form  input:not([type]),
+.log-form input[type=date],
+.log-form input[type=datetime-local],
+.log-form input[type=email],
+.log-form input[type=file],
+.log-form input[type=number],
+.log-form input[type=password],
+.log-form input[type=search],
+.log-form input[type=tel],
+.log-form input[type=text],
+.log-form input[type=time],
+.log-form input[type=url],
+.log-form textarea {
+  width: 100%;
+  vertical-align: top
+}
+
+.log-form input:not([type]),
+.log-form input[type=date],
+.log-form input[type=datetime-local],
+.log-form input[type=email],
+.log-form input[type=file],
+.log-form input[type=number],
+.log-form input[type=password],
+.log-form input[type=search],
+.log-form input[type=tel],
+.log-form input[type=text],
+.log-form input[type=time],
+.log-form input[type=url] {
+  font-family: Lato, 'Helvetica Neue', Arial, Helvetica, sans-serif;
+  margin: 0;
+  outline: 0;
+  -webkit-appearance: none;
+  tap-highlight-color: rgba(255, 255, 255, 0);
+  line-height: 1.21428571em;
+  padding: .67857143em 1em;
+  font-size: 1em;
+  background: #fff;
+  border: 1px solid rgba(34, 36, 38, .15);
+  color: rgba(0, 0, 0, .87);
+  box-shadow: 0 0 0 0 transparent inset;
+  -webkit-transition: color .1s ease, border-color .1s ease;
+  transition: color .1s ease, border-color .1s ease
+}

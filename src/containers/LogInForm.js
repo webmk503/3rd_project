@@ -1,11 +1,12 @@
-import React, {Component, } from 'react';
+import React, {Component,} from 'react';
 import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types';
 import '../../node_modules/semantic-ui-css/semantic.min.css';
 import '../styles/global.css';
-import LogIn from "../components/LogIn";
+import {LogIn} from "../components/LogIn";
 import {createUser, logIn, updateLoginCount} from "../actions/main";
+import MainMenu from "../components/MainMenu";
 
 const mapStateToProps = state => {
   return {
@@ -27,8 +28,12 @@ const mapDispatchToProps = dispatch => ({
 class App extends Component {
   render() {
     const {actions: {createUser, updateLoginCount, logIn}, users, books} = this.props;
+
     return (
-      <div className="logIn">
+      <div className="login_page">
+        <MainMenu
+          users={users}
+        />
         <LogIn
           users={users}
           books={books}
@@ -40,6 +45,7 @@ class App extends Component {
     );
   }
 }
+
 App.propTypes = {
   actions: PropTypes.object,
   users: PropTypes.object,

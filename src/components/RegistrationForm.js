@@ -1,13 +1,15 @@
-import React, {Component,} from 'react';
+import React, {PureComponent,} from 'react';
 import PropTypes from 'prop-types';
 import * as Yup from "yup";
+import {withRouter} from "react-router-dom";
 import {Field, Form, withFormik} from 'formik';
 import '../styles/global.css';
+import {loggedIn} from "../utils/localStorage";
 
-class RegistrationForm extends Component {
+class RegistrationForm extends PureComponent {
 
   render() {
-    const {values, errors, touched, isSubmitting} = this.props;
+    const {values, errors, touched, isSubmitting,} = this.props;
     return (
       <div className="reg-form">
         <h1>Sign In </h1>
@@ -38,7 +40,6 @@ class RegistrationForm extends Component {
             type="email"
             placeholder="E-mail"
             name="email"
-            value={values.email}
           />
           {touched.email && errors.email && <p>{errors.email}</p>}
           <label>Password</label>
@@ -71,8 +72,8 @@ class RegistrationForm extends Component {
   }
 }
 
-export const FormikRegForm = withFormik({
-  mapPropsToValues({nickname, fName, lName, email, pass1, pass2, phone}) {
+const FormikRegForm = withFormik({
+  mapPropsToValues({nickname, fName, lName, email, pass1, pass2, phone,}) {
     return {
       nickname: nickname || '',
       fName: fName || '',
@@ -91,28 +92,66 @@ export const FormikRegForm = withFormik({
     pass1: Yup.string().min(8, 'Password should be minimum 8 characters').required('Password is required'),
     pass2: Yup.string().min(8, 'Password should be minimum 8 characters').required('Password submitting is required'),
     phone: Yup.string().min(10, 'Phone number should be minimum 10 characters').required('Phone is required'),
-
   }),
-  handleSubmit(values, {resetForm, setErrors, setSubmitting,}) {
-    setTimeout(() => {
-      if (values.nickname === 'agrr') {
-        setErrors({
-          nickname: 'That nickname is already taken',
-        })
-      } else if (values.email === 'matveev@mail.ru') {
-        setErrors({
-          email: 'That email is already taken',
-        })
+  handleSubmit(values, {resetForm, setErrors, setSubmitting, props},) {
+    console.log('here');
+
+    const newUser = {
+      id: Math.random(),
+      nickname: values.nickname,
+      fName: values.fName,
+      lName: values.lName,
+      email: values.email,
+      pass1: values.pass1,
+      phone: values.phone,
+      numberOfLogin: 1,
+    };
+    if (values.pass1 !== values.pass2) {
+      setErrors({
+        pass1: 'Password is not concurrence',
+        pass2: 'Password is not concurrence',
+      })
+    } else if (Object.keys(props.users).length > 0) {
+      const existedUser = Object.values(props.users).find(user => (
+        user.nickname === values.nickname || user.email === values.email
+      ));
+
+      console.log(existedUser);
+      if (existedUser) {
+        if (values.email === existedUser.email) {
+          setErrors({
+            email: 'That email is already taken',
+          })
+        } else if (values.nickname === existedUser.nickname) {
+          setErrors({
+            nickname: 'That nickname is already taken',
+          })
+        }
       } else {
+        console.log('add user in if.else');
+        props.createUser(newUser);
+        loggedIn(newUser.id);
         resetForm();
+        this.props.history.push('/books');
       }
-      setSubmitting(false);
-    }, 2000);
+    } else {
+      console.log('add user in else');
+      props.createUser(newUser);
+      loggedIn(newUser.id);
+      resetForm();
+      this.props.history.push('/books');
+
+    }
+    setSubmitting(false);
   },
 })(RegistrationForm);
 
+export const SignInForm = withRouter(FormikRegForm);
+
 RegistrationForm.propTypes = {
   users: PropTypes.object,
+  history: PropTypes.object,
+
 };
 
 

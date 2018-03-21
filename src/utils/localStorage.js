@@ -1,10 +1,17 @@
-export function createLocalStorage() {
+export function createLocalStorageUsers() {
   localStorage.setItem('users', JSON.stringify({}));
+}
+export function createLocalStorageBooks() {
   localStorage.setItem('books', JSON.stringify({}));
+}
+export function createLocalStorageLoggedUser() {
   localStorage.setItem('loggedIn',JSON.stringify({}));
+}
+export function createLocalStorageComments() {
   localStorage.setItem('comments',JSON.stringify({}));
+}
+export function createLocalStorageAuthors() {
   localStorage.setItem('authors', JSON.stringify({}));
-
 }
 
 export function updateUsers(user) {

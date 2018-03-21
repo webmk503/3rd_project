@@ -2,8 +2,6 @@ import {ADD_USER, GET_STORAGE, PLUS_COUNT,} from "../constants/main";
 
 const initialState = {
   users: {},
-  email: '',
-  username: '',
 };
 
 const userReducer = (state = initialState, action) => {

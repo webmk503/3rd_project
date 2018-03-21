@@ -61,6 +61,7 @@ img {
   transition: color .1s ease, border-color .1s ease
 }
 
+
 label {
   display: block;
   margin: 0 0 .28571429rem 0;
@@ -135,15 +136,6 @@ div.container {
   height: 400px;
   max-width: 400px;
   max-height: 400px;
-}
-
-.logIn {
-  width: 300px;
-  position: absolute;
-  left: 40%;
-  top: 30%;
-  padding: 30px;
-  border: 1px solid cadetblue;
 }
 
 input.search-text {

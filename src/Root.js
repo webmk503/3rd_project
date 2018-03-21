@@ -7,7 +7,12 @@ import LogInForm from './containers/LogInForm';
 import Home from './containers/BooksPage'
 import { bindActionCreators } from "redux";
 import {
-  createLocalStorage, getAuthorsFromLocaleStorage, getBooksFromLocalStorage, getCommentsFromLocalStorage,
+  createLocalStorage, createLocalStorageAuthors, createLocalStorageBooks, createLocalStorageComments,
+  createLocalStorageLoggedUser,
+  createLocalStorageUsers,
+  getAuthorsFromLocaleStorage,
+  getBooksFromLocalStorage,
+  getCommentsFromLocalStorage,
   getLoggedInFromLocalStorage,
   getUsersFromLocalStorage
 } from "./utils/localStorage";
@@ -36,16 +41,26 @@ const mapStateToProps = () => {
 const mapDispatchToProps = dispatch => ({
   actions: bindActionCreators({
     getLocalStorage,
-    createLocalStorage,
+    createLocalStorageUsers,
+    createLocalStorageBooks,
+    createLocalStorageLoggedUser,
+    createLocalStorageComments,
+    createLocalStorageAuthors,
   }, dispatch)
 });
 
 class Root extends Component {
 
   componentWillMount() {
-    const {users, books, comments, authors} = this.props;
+    const {users, books, comments, authors, } = this.props;
     if (users === null) {
-      this.props.actions.createLocalStorage();
+      this.props.actions.createLocalStorageUsers();
+    } else if (books === null) {
+      this.props.actions.createLocalStorageBooks();
+    } else if (comments === null) {
+      this.props.actions.createLocalStorageComments();
+    } else if (authors === null) {
+      this.props.actions.createLocalStorageAuthors();
     }
     this.props.actions.getLocalStorage(users, books, comments, authors);
   }

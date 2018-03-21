@@ -4,10 +4,13 @@ import {Link, withRouter} from "react-router-dom";
 import PropTypes from 'prop-types';
 
 import '../styles/global.css';
-import {getLoggedInFromLocalStorage, logOut} from "../utils/localStorage";
+import {createLocalStorageLoggedUser, getLoggedInFromLocalStorage, logOut} from "../utils/localStorage";
 
 class MainMenu extends PureComponent {
-  state = {activeItem: 'home'};
+  state = {
+    activeItem: 'books',
+    nickname: '',
+  };
 
   handleItemClick = (e, {name}) => this.setState({activeItem: name});
 
@@ -21,6 +24,11 @@ class MainMenu extends PureComponent {
     const {users} = this.props;
     const loggedIn = getLoggedInFromLocalStorage();
     const loggedUser = users[loggedIn.id];
+    if(loggedUser){
+      this.setState({
+        nickname: loggedUser.nickname,
+      })
+    }
     // if(!loggedUser){
     //   this.props.history.push('/login');
     // }
@@ -33,7 +41,13 @@ class MainMenu extends PureComponent {
           <Menu.Item name='houses' active={activeItem === 'houses'} onClick={this.handleItemClick}/>
         </Link>
         <Menu.Menu position='right'>
-          <Dropdown item text={loggedUser.nickname}>
+          <Link to="/sign_in">
+            <Menu.Item position='right' name='sign in' active={activeItem === 'sign in'} onClick={this.handleItemClick}/>
+          </Link>
+          <Link to="/login">
+            <Menu.Item position='right' name='log in' active={activeItem === 'log in'} onClick={this.handleItemClick}/>
+          </Link>
+          <Dropdown item text={this.state.nickname}>
             <Dropdown.Menu>
               <Dropdown.Item onClick={this.handleLogOut}> Log Out </Dropdown.Item>
             </Dropdown.Menu>

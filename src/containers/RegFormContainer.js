@@ -1,8 +1,10 @@
 import React, {Component, } from 'react';
 import {connect} from 'react-redux'
+import {bindActionCreators} from "redux";
 import PropTypes from 'prop-types';
-import { FormikRegForm} from "../components/RegistrationForm";
+import { SignInForm} from "../components/RegistrationForm";
 import MainMenu from "../components/MainMenu";
+import {createUser} from "../actions/main";
 
 const mapStateToProps = state => {
   return {
@@ -11,18 +13,23 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-
+  actions: bindActionCreators({
+    createUser,
+  }, dispatch)
 });
 
 class RegFormContainer extends Component {
 
 
   render() {
-    const {users, } = this.props;
+    const {users, actions: {createUser}} = this.props;
     return (
       <div>
         <MainMenu users={users}/>
-        <FormikRegForm />
+        <SignInForm
+          createUser={createUser}
+          users={users}
+        />
       </div>
     );
   }
@@ -36,5 +43,3 @@ RegFormContainer.propTypes = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegFormContainer);
-
-
